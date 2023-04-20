@@ -1,24 +1,47 @@
 package iti.jets.service;
 
-import java.util.Set;
+import java.util.List;
 
-import iti.jets.model.Film;
-
+import iti.jets.repository.connection.DBMananger;
+import iti.jets.repository.dao.implementation.FilmDao;
+import iti.jets.repository.entity.Actor;
+import iti.jets.repository.entity.Film;
+import iti.jets.repository.entity.FilmActor;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 public class FilmService {
 
-    public static void updateFilm(Film film) {
+    private FilmDao filmDao = null;
+    private EntityManagerFactory entityManagerFactory = DBMananger.getInstance();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+    public FilmService() {
+        filmDao = new FilmDao(entityManager);
     }
 
-    public static Film getFilmbyID(int id) {
-        return null;
+    public void update(Film film) {
+        filmDao.update(film);
     }
 
-    public static void addFilm(Film film) {
+    public Film getByID(int id) {
+        return filmDao.getById(id);
     }
 
-    public static Set<Film> getAllFilms() {
-        return null;
+    public void add(Film film) {
+        filmDao.add(film);
     }
-    
+
+    public void deleteByID(int id){
+        filmDao.delete(id);
+    }
+
+    public List<Film> getAll() {
+        return filmDao.getAll();
+    }
+
+    public void addActor(FilmActor actor,int id){
+        filmDao.addActor(actor,id);
+    }   
+
 }
