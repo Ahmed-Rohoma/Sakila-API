@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+
+    <endpoint
+        name="ActorsEndPoint"
+        implementation="iti.jets.Web_Services.Soap.ActorEndPoint"
+        url-pattern="/actors" />
+
+    <endpoint
+        name="FilmsEndPoint"
+        implementation="iti.jets.Web_Services.Soap.FilmEndPoint"
+        url-pattern="/films" />
+
+</endpoints>

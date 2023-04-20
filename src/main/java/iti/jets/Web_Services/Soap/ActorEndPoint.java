@@ -7,20 +7,14 @@ import iti.jets.model.dto.ActorDTO;
 import iti.jets.model.mapper.ActorMapper;
 import iti.jets.repository.entity.Actor;
 import iti.jets.service.ActorService;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.GenericEntity;
-import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 
-@Path("actor")
+@WebService
 public class ActorEndPoint {
 
     private ActorService actorService = null;
@@ -29,8 +23,7 @@ public class ActorEndPoint {
         actorService = new ActorService();
     }
 
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @WebMethod
     public Response getAll() {
         List<ActorDTO> FilmsList = actorService.getAll();
         GenericEntity<List<ActorDTO>> entity = new GenericEntity<List<ActorDTO>>(FilmsList) {
@@ -38,9 +31,7 @@ public class ActorEndPoint {
         return Response.ok().entity(entity).build();
     }
 
-    @GET
-    @Path("/{oid}")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN })
+    @WebMethod
     public Response getById(@PathParam("oid") int id) {
         ActorDTO existingFilm = actorService.getByID(id);
         if (existingFilm == null) {
@@ -50,8 +41,7 @@ public class ActorEndPoint {
         return Response.ok().entity(existingFilm).build();
     }
 
-    @POST 
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @WebMethod
     public Response add(ActorDTO actor) {
         if (actor != null) {
             actorService.add(ActorMapper.toActorEntity(actor));
@@ -60,16 +50,14 @@ public class ActorEndPoint {
         return Response.ok().entity("Please Provide The actor in Correct Format").build();
     }
 
-    @PUT
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @WebMethod
     public Response update(Actor actor) {
         actorService.update(actor);
         return Response.ok().entity("Film with ID : " + actor.getId() + " has been Updated ").build();
     }
 
 
-    @DELETE
-    @Path("{id}")
+    @WebMethod
     public Response delete(@PathParam("id") int id) {
         actorService.deleteByID(id);
         return Response.ok().entity("Actor with ID : " + id + " has been Deleted ").build();

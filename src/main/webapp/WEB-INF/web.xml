@@ -4,6 +4,9 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    
+    <!-- ============================ REST =================================== -->
+    
     <servlet>
         <servlet-name>Sakila WEB API</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -17,5 +20,17 @@
         <servlet-name>Sakila WEB API</servlet-name>
         <url-pattern>/webapi/*</url-pattern>
     </servlet-mapping>
+
+    <!-- ======================= SOAP ==================================== -->
+
+    <listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>JAXWSServlet</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
 </web-app>
