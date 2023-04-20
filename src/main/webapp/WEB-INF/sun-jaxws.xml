@@ -12,4 +12,32 @@
         implementation="iti.jets.Web_Services.Soap.FilmEndPoint"
         url-pattern="/films" />
 
+    <!-- add end points configuration -->
+
+    <endpoint
+        name="AddressEndPoint"
+        implementation="iti.jets.Web_Services.Soap.AddressEndPoint"
+        url-pattern="/address" />
+
+    <endpoint
+        name="CategoryEndPoint"
+        implementation="iti.jets.Web_Services.Soap.CategoryEndPoint"
+        url-pattern="/categories" />
+
+    <endpoint
+        name="CityEndPoint"
+        implementation="iti.jets.Web_Services.Soap.CityEndPoint"
+        url-pattern="/cities" />
+
+    <endpoint
+        name="CountryEndPoint"
+        implementation="iti.jets.Web_Services.Soap.CountryEndPoint"
+        url-pattern="/countries" />
+
+    <endpoint
+        name="CustomerEndPoint"
+        implementation="iti.jets.Web_Services.Soap.CustomerEndPoint"
+        url-pattern="/customers" />
+
+
 </endpoints>
