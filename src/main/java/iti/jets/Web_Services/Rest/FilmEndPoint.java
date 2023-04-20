@@ -50,15 +50,17 @@ public class FilmEndPoint {
         return Response.ok().entity(FilmMapper.toDTO(existingFilm)).build();
     }
 
-    @POST 
-    @Consumes({ MediaType.APPLICATION_JSON })
-    public Response addFilm(Film film) {
-        if (film != null) {
-            filmService.add(film);
-            return Response.ok().entity("Film with ID : " + film.getId() + " has been Added ").build();
-        }
-        return Response.ok().entity("Please Provide The Film in This Format => 'Film [id=?,name=?]'").build();
-    }
+
+    // ====> this method need to be updated from main.java ( before adding new film (need to add new or get the language) )
+    // @POST 
+    // @Consumes({ MediaType.APPLICATION_JSON })
+    // public Response addFilm(Film film) {
+    //     if (film != null) {
+    //         filmService.add(film);
+    //         return Response.ok().entity("Film with ID : " + film.getId() + " has been Added ").build();
+    //     }
+    //     return Response.ok().entity("Please Provide The Film in This Format => 'Film [id=?,name=?]'").build();
+    // }
 
     @PUT
     @Consumes({ MediaType.APPLICATION_JSON })
